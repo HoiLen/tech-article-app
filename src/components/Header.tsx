@@ -1,7 +1,10 @@
 import { Link } from "@lazarv/react-server/navigation";
 import { PenTool } from "lucide-react";
+import { ReactNode } from "react";
 
-export default function Header() {
+export default function Header(props:{pageName: ReactNode | null}) {
+
+  const {pageName} = props;
 
   return (
     <header className="bg-white border-b border-gray-200">
@@ -10,7 +13,11 @@ export default function Header() {
           <Link to="/">
             <div className="text-2xl font-bold text-gray-800">TechShare</div>
           </Link>
+
+          {pageName}
+
         </div>
+
         <div className="flex items-center space-x-6">
           <Link to="/editor">
             <div className="bg-teal-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-teal-700 transition duration-300 ease-in-out">
