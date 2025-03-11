@@ -26,7 +26,7 @@ declare namespace __react_server_routing__ {
   type OptionalCatchAllSlug<S extends string> =
     S extends `${string}${SearchOrHash}` ? never : S;
 
-  type StaticRoutes = "/" | "/blogs" | "/editor" | "/popular";
+  type StaticRoutes = "/" | "/blogs" | "/ConvexClientProvider" | "/editor" | "/popular";
   type DynamicRoutes<T0 extends string> =
     | `/articles/${SafeSlug<T0>}`;
 
@@ -59,7 +59,7 @@ declare namespace __react_server_routing__ {
       ? ExtractParams<T>
       : never;
 
-  type Outlet = never;
+  type Outlet = `pageName`;
 }
 
 declare module "@lazarv/react-server/navigation" {
