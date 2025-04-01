@@ -1,46 +1,40 @@
 "use client";
 
-import { useQuery } from "convex/react";
 import "./global.css";
-import { api } from "../../convex/_generated/api";
-import { useEffect, useState } from "react";
-import { Article } from "../domain/Article";
+import { Suspense } from "react";
 import LatestArticleList from "../components/LatestArticleList";
+import { PopularArticleList } from "../components/PopularArticleList";
 
-export default function Home() {
-  // useQuery()の引数としてデータベースから記事情報を取得できる
-  const articlesData = useQuery(api.articles.get);
-  const [articles, setArticles] = useState<Article[]>([]);
+type ArticleJson = {
+  id: string;
+  title: string;
+  description: string;
+  author: string;
+  createdAt: number;
+  viewCount: number;
+};
 
-  useEffect(() => {
-    if (!articlesData) return;
-    const articleList = articlesData.map((article) => {
-      return new Article(
-        article.id,
-        article.title,
-        article.description,
-        article.author,
-        article.createdAt,
-        article.viewCount
-      );
-    });
-    setArticles(articleList);
-  }, [articlesData]);
+const getArticles = async () => {
+  const response = await fetch(
+    "http://localhost:3000/api/articles/popular?limit=2"
+  );
+
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export default async function Home() {
+  const articles = (await getArticles()) as ArticleJson[];
 
   return (
     <div>
-      {articles.map((article) => {
-        return (
-          <div key={article.id}>
-            <h1>{article.title}</h1>
-            <p>{article.description}</p>
-            <p>{article.author}</p>
-            <p>{article.createdAt}</p>
-            <p>{article.viewCount}</p>
-          </div>
-        );
-      })}
+      <h1 className="font-bold">Latest Articles</h1>
       <LatestArticleList />
+      <h1 className="font-bold">Popular Articles</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PopularArticleList articles={articles} />
+      </Suspense>
     </div>
   );
 }
