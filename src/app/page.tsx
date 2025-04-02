@@ -2,6 +2,8 @@ import "./global.css";
 import { Suspense } from "react";
 import LatestArticleList from "../components/LatestArticleList";
 import { PopularArticleList } from "../components/PopularArticleList";
+import { Link } from "@lazarv/react-server/navigation";
+import { ArrowRight } from "lucide-react";
 
 type ArticleJson = {
   id: string;
@@ -26,7 +28,24 @@ export default async function Home() {
   const articles = (await getArticles()) as ArticleJson[];
 
   return (
-    <div>
+    <div className="max-w-5xl mx-auto px-4 py-12">
+      {/* Welcome Message */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Welcome to TechShare
+        </h1>
+        <p className="text-xl text-gray-600 mb-8">
+          Discover and share valuable insights in technology.
+        </p>
+        <Link
+          to="/editor"
+          className="inline-flex items-center bg-teal-600 text-white px-6 py-3 rounded-md hover:bg-teal-800 transition-colors duration-300"
+        >
+          Start Writing <ArrowRight className="ml-2" size={20} />
+        </Link>
+      </div>
+
+      {/* Article List */}
       <h1 className="font-bold">Latest Articles</h1>
       <LatestArticleList />
       <h1 className="font-bold">Popular Articles</h1>
