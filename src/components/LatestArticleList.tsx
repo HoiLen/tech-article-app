@@ -31,7 +31,7 @@ const LatestArticleList = () => {
   }, [articlesData]);
 
   return (
-    <div className="ml-5 mr-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {articles.map((article) => (
         <span key={article.id}>
           <ArticleCard article={article} />

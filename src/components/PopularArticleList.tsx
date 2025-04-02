@@ -16,7 +16,7 @@ type Props = {
 
 export const PopularArticleList: FC<Props> = ({ articles }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {articles.map((article, index) => (
         <span key={index}>
           <ArticleCard article={article} />
