@@ -24,6 +24,7 @@ const ArticleCard: FC<Props> = ({ article }) => {
           border
           border-gray-300
           rounded-lg overflow-hidden
+          hover:bg-gray-50
           hover:shadow-xl
           transition duration-300
           cursor-pointer
