@@ -16,7 +16,7 @@ type ArticleJson = {
 
 const getArticles = async () => {
   const response = await fetch(
-    "http://localhost:3000/api/articles/popular?limit=2"
+    "http://localhost:3000/api/articles/popular?limit=3"
   );
 
   const data = await response.json();
@@ -46,18 +46,36 @@ export default async function Home() {
       </div>
 
       {/* Article List */}
+      {/* - Latest Articles */}
       <div className="mb-12">
         <div className="flex items-center mb-8">
           <Clock size={24} className="text-gray-600 mr-2" />
-          <h2 className="text-2xl font-bold text-gray-900">Latest Article</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Latest Articles</h2>
         </div>
         <LatestArticleList />
       </div>
 
-      <h1 className="font-bold">Popular Articles</h1>
-      <Suspense fallback={<div>Loading...</div>}>
-        <PopularArticleList articles={articles} />
-      </Suspense>
+      {/* - Popular Articles */}
+      <div className="mb-12">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center">
+            <Clock size={24} className="text-gray-600 mr-2" />
+            <h2 className="text-2xl font-bold text-gray-900">
+              Popular Articles
+            </h2>
+          </div>
+          <Link
+            to="/popular"
+            className="inline-flex items-center text-teal-600 hover:text-teal-700"
+          >
+            View all
+            <ArrowRight className="ml-1" size={20} />
+          </Link>
+        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <PopularArticleList articles={articles} />
+        </Suspense>
+      </div>
     </div>
   );
 }
