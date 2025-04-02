@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import LatestArticleList from "../components/LatestArticleList";
 import { PopularArticleList } from "../components/PopularArticleList";
 import { Link } from "@lazarv/react-server/navigation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
 
 type ArticleJson = {
   id: string;
@@ -46,8 +46,14 @@ export default async function Home() {
       </div>
 
       {/* Article List */}
-      <h1 className="font-bold">Latest Articles</h1>
-      <LatestArticleList />
+      <div className="mb-12">
+        <div className="flex items-center mb-8">
+          <Clock size={24} className="text-gray-600 mr-2" />
+          <h2 className="text-2xl font-bold text-gray-900">Latest Article</h2>
+        </div>
+        <LatestArticleList />
+      </div>
+
       <h1 className="font-bold">Popular Articles</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <PopularArticleList articles={articles} />
