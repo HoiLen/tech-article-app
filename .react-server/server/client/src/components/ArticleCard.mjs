@@ -1,0 +1,1 @@
+import"react/jsx-runtime";import{A as m,t as p}from"../../../src/components/ArticleCard.CWmrcicR.mjs";import"react";import"../../../@lazarv/react-server.Cvk6HU20.mjs";export{m as default,p as truncateText};

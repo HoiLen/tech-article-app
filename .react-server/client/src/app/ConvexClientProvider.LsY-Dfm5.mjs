@@ -1,0 +1,1 @@
+import{j as o}from"../../jsx-runtime.REeFFd-0.mjs";import{C as t,a as r}from"../../use_queries.Bs4ezsKI.mjs";import"../../react-server/client/context.DPdp0zqd.mjs";import"../../index.DdUvsOoU.mjs";const n=new t("https://secret-hawk-737.convex.cloud");function c({children:e}){return o.jsx(r,{client:n,children:e})}export{c as default};
