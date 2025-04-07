@@ -1,5 +1,5 @@
 import { v } from "convex/values";
-import { query } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 // 記事の更新順で記事を取得
 export const get = query({
@@ -53,6 +53,23 @@ export const getPopular = query({
         createdAt: article._creationTime,
         viewCount: article.viewCount,
       };
+    });
+  },
+});
+
+// 記事の追加 mutation(変更)
+export const insert = mutation({
+  args: {
+    title: v.string(),
+    description: v.string(),
+  },
+  // author は固定として、editor からは title と description を受け取る
+  handler: async (ctx, { title, description }) => {
+    await ctx.db.insert("articles", {
+      title,
+      description,
+      author: "@HoiLen",
+      viewCount: 0,
     });
   },
 });
