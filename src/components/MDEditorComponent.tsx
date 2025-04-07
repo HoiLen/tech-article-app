@@ -31,7 +31,7 @@ const MDEditorComponent: FC<MDEditorProps> = ({ value, onChange }) => {
         data-color-mode="light"
         style={
           {
-            "--color-fg-defalut": "#000000",
+            "--color-fg-default": "#000000",
             "--color-canvas-default": "#ffffff",
           } as React.CSSProperties
         }
