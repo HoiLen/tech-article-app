@@ -95,3 +95,20 @@ export const getById = query({
     };
   },
 });
+
+export const incrementViewCount = mutation({
+  args: {
+    id: v.id("articles"),
+  },
+  handler: async (ctx, { id }) => {
+    const article = await ctx.db.get(id);
+    if (!article) {
+      throw new Error("Article not fount");
+    }
+
+    // _id で変更するレコードを指定し、{} でカラムに変更をかける
+    await ctx.db.patch(article._id, {
+      viewCount: article.viewCount + 1,
+    });
+  },
+});
