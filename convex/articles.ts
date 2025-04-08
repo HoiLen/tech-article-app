@@ -73,3 +73,25 @@ export const insert = mutation({
     });
   },
 });
+
+// id から記事を取得する
+export const getById = query({
+  args: {
+    id: v.id("articles"),
+  },
+  handler: async (ctx, { id }) => {
+    const article = await ctx.db.get(id);
+    if (!article) {
+      throw new Error("Article not found");
+    }
+
+    return {
+      id: article._id,
+      title: article.title,
+      description: article.description,
+      author: article.author,
+      createdAt: article._creationTime,
+      viewCount: article.viewCount,
+    };
+  },
+});
