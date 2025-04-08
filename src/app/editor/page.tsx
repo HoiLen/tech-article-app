@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation } from "convex/react";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { api } from "../../../convex/_generated/api";
 import { useClient } from "@lazarv/react-server/client";
 import MDEditorComponent from "../../components/MDEditorComponent";
