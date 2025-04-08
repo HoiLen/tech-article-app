@@ -18,10 +18,7 @@ const Editor: FC = () => {
   // <form> から情報を受け取って処理する
   const handleAddArticle = async (formData: FormData) => {
     const title = formData.get("title") as string;
-    await insertArticle({
-      title,
-      description: content,
-    });
+    await insertArticle({ title, description: content });
 
     alert("Article created successfully!");
     navigate("/");

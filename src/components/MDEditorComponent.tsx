@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useState } from "react";
 import type MDEditorType from "@uiw/react-md-editor";
+import Markdown from "react-markdown";
 
 interface MDEditorProps {
   value: string;
@@ -52,6 +53,16 @@ const MDEditorComponent: FC<MDEditorProps> = ({ value, onChange }) => {
             },
           }}
         />
+      </div>
+      <div className="flex">
+        <textarea
+          className="w-60 max-h-96"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+        <div>
+          <Markdown>{value}</Markdown>
+        </div>
       </div>
     </div>
   );
