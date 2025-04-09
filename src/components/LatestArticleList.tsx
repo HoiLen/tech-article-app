@@ -4,7 +4,7 @@ import { useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useEffect, useState } from "react";
 import { Article } from "../domain/Article";
-import ArticleCard from "./ArticleCard";
+import ArticleCardRectangle from "./ArticleCardRectangle";
 
 const LatestArticleList = () => {
   // 記事情報の取得
@@ -31,10 +31,10 @@ const LatestArticleList = () => {
   }, [articlesData]);
 
   return (
-    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-5 grid sm:grid-cols-1 md:grid-cols-2 gap-6">
       {articles.map((article) => (
         <span key={article.id}>
-          <ArticleCard article={article} />
+          <ArticleCardRectangle article={article} />
         </span>
       ))}
     </div>
