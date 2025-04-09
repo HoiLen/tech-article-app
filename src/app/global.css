@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ************************ react-md-editor の textarea 部分で文字を黒くする ************************ */
+
 .w-md-editor-content textarea {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -9,3 +11,5 @@
 .code-line {
   color: #000000;
 }
+
+/* ************************************************************************************************ */
