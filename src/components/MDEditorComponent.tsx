@@ -2,7 +2,6 @@
 
 import { FC, useEffect, useState } from "react";
 import type MDEditorType from "@uiw/react-md-editor";
-import Markdown from "react-markdown";
 
 interface MDEditorProps {
   value: string;
@@ -28,41 +27,17 @@ const MDEditorComponent: FC<MDEditorProps> = ({ value, onChange }) => {
 
   return (
     <div className="space-y-20">
-      <div
-        data-color-mode="light"
-        style={
-          {
-            "--color-fg-default": "#000000",
-            "--color-canvas-default": "#ffffff",
-          } as React.CSSProperties
-        }
-        className="prose max-w-none"
-      >
+      <div data-color-mode="light" className="prose max-w-none">
         <MDEditor
           value={value}
           onChange={onChange}
           preview="live"
           height={400}
-          className="w-full !text-black"
+          className="w-full"
           textareaProps={{
             placeholder: "Write your article content here...",
-            style: {
-              color: "#000000",
-              backgroundColor: "#ffffff",
-              fontSize: "16px",
-            },
           }}
         />
-      </div>
-      <div className="flex">
-        <textarea
-          className="w-60 max-h-96"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-        />
-        <div>
-          <Markdown>{value}</Markdown>
-        </div>
       </div>
     </div>
   );
