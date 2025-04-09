@@ -31,7 +31,7 @@ const LatestArticleList = () => {
   }, [articlesData]);
 
   return (
-    <div className="mx-5 grid sm:grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 gap-8">
       {articles.map((article) => (
         <span key={article.id}>
           <ArticleCardRectangle article={article} />

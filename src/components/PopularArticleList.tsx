@@ -1,5 +1,5 @@
 import { FC } from "react";
-import ArticleCard from "./ArticleCard";
+import ArticleCardRectangle from "./ArticleCardRectangle";
 
 type ArticleProps = {
   id: string;
@@ -16,10 +16,10 @@ type Props = {
 
 export const PopularArticleList: FC<Props> = ({ articles }) => {
   return (
-    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="mx-5 grid grid-cols-1 md:grid-cols-2 gap-8">
       {articles.map((article, index) => (
         <span key={index}>
-          <ArticleCard article={article} />
+          <ArticleCardRectangle article={article} />
         </span>
       ))}
     </div>

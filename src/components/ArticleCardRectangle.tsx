@@ -11,22 +11,24 @@ type Props = {
 
 const ArticleCardRectangle: FC<Props> = ({ article }) => {
   return (
-    <Link to={`/articles/${article.id}`} className="w-[30%]">
+    <Link to={`/articles/${article.id}`}>
       <div
         className="
           border
           border-gray-300
+          group
           rounded-lg overflow-hidden
           hover:bg-gray-50
           hover:shadow-xl
           transition duration-300
           cursor-pointer
           h-auto
+          hover:h-[auto-8px]
           mb-2"
       >
-        <div className="h-2 bg-orange-300"></div>
+        <div className="h-2 group-hover:bg-amber-500 transition duration-500"></div>
         <div className="p-6 h-auto flex flex-col mb-1">
-          <h3 className="text-lg font-bold text-orange-950">{article.title}</h3>
+          <h3 className="text-lg font-bold text-gray-900">{article.title}</h3>
 
           {/* icon / author / publish day / view count */}
           <div className="flex items-center mt-2">

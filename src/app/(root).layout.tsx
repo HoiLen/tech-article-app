@@ -15,7 +15,7 @@ export default function RootLayout({
         <ConvexClientProvider>
           <div className="flex flex-col min-h-screen">
             <Header pageName={pageName} />
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow bg-[rgb(242,248,237)]">{children}</main>
             <Footer />
           </div>
         </ConvexClientProvider>

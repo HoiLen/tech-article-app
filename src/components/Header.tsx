@@ -6,11 +6,14 @@ export default function Header(props: { pageName: ReactNode | null }) {
   const { pageName } = props;
 
   return (
-    <header className="bg-white border-b border-gray-200">
+    <header className="h-[72px] bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="px-8 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-6">
           <Link to="/">
-            <div className="text-2xl font-bold text-gray-800">TechShare</div>
+            <div className="text-2xl font-bold text-amber-700">
+              P<span className="text-amber-500">o</span>iT
+              <span className="text-amber-500">e</span>ch
+            </div>
           </Link>
 
           {pageName}
@@ -21,7 +24,7 @@ export default function Header(props: { pageName: ReactNode | null }) {
             <div className="text-lg font-medium">Blogs</div>
           </Link>
           <Link to="/editor">
-            <div className="bg-teal-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-teal-700 transition duration-300 ease-in-out">
+            <div className="bg-amber-500 text-white px-4 py-2 rounded-md flex items-center hover:bg-amber-950 hover:text-amber-300 transition duration-300 ease-in-out">
               <PenTool size={20} className="mr-2" />
               Write
             </div>
