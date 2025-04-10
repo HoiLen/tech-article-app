@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { FC, useEffect, useState } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
@@ -15,6 +15,8 @@ const ArticleEditor: FC<Props> = ({ id }) => {
   const article = useQuery(api.articles.getById, {
     id: id as Id<"articles">,
   });
+
+  const mutArticle = useMutation(api.articles.mutateArticle);
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -34,12 +36,15 @@ const ArticleEditor: FC<Props> = ({ id }) => {
   const { navigate } = useClient();
 
   // <form> から情報を受け取って処理する
-  const handleAddArticle = async (formData: FormData) => {
-    const title = formData.get("title") as string;
-    // await insertArticle({ title, description: content });
+  const handleAddArticle = async () => {
+    await mutArticle({
+      id: id as Id<"articles">,
+      title: title,
+      description: content,
+    });
 
-    alert("Article created successfully!");
-    navigate("/");
+    alert("Article mutated successfully!");
+    navigate(`/articles/${id}`);
   };
 
   return (
@@ -89,12 +94,12 @@ const ArticleEditor: FC<Props> = ({ id }) => {
           </div>
         </div>
 
-        {/* 公開ボタン */}
+        {/* 保存ボタン */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white font-medium px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         >
-          Publish Article
+          Save Article
         </button>
       </form>
     </div>
