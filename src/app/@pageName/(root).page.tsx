@@ -1,3 +1,3 @@
 export default function pageName() {
-	return <div>Home</div>
+  return <div className="text-lg font-medium text-gray-600">Home</div>;
 }
