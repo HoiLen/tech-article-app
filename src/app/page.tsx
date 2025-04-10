@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import LatestArticleList from "../components/LatestArticleList";
 import { PopularArticleList } from "../components/PopularArticleList";
 import { Link } from "@lazarv/react-server/navigation";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, Flame } from "lucide-react";
 
 type ArticleJson = {
   id: string;
@@ -65,7 +65,7 @@ export default async function Home() {
       <div className="mb-12">
         <div className="flex items-center justify-between mb-8 sticky top-[72px] bg-[rgb(242,248,237)] border-b-4 border-amber-500">
           <div className="flex items-center">
-            <Clock size={24} className="text-gray-600 mr-2" />
+            <Flame size={24} className="text-gray-600 mr-2" />
             <h2 className="text-2xl font-bold text-gray-900">
               Popular Articles
             </h2>
