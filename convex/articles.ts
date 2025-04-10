@@ -112,3 +112,24 @@ export const incrementViewCount = mutation({
     });
   },
 });
+
+// 記事に変更をかける関数
+export const mutateArticle = mutation({
+  args: {
+    id: v.id("articles"),
+    title: v.string(),
+    description: v.string(),
+  },
+  handler: async (ctx, { id, title, description }) => {
+    const article = await ctx.db.get(id);
+    if (!article) {
+      throw new Error("Article not fount");
+    }
+
+    // _id で変更するレコードを指定し、{} でカラムに変更をかける
+    await ctx.db.patch(article._id, {
+      title: title,
+      description: description,
+    });
+  },
+});
