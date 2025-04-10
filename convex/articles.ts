@@ -57,7 +57,35 @@ export const getPopular = query({
   },
 });
 
-// 記事の追加 mutation(変更)
+// author で記事を取得
+export const getByAuthor = query({
+  args: {
+    author: v.string(),
+  },
+  handler: async (ctx, { author }) => {
+    const articles = await ctx.db
+      .query("articles")
+      .filter((q) => q.eq(q.field("author"), author))
+      .collect();
+
+    const sortedArticles = articles.sort(
+      (a, b) => b._creationTime - a._creationTime // 降順ソート
+    );
+
+    return sortedArticles.map((article) => {
+      return {
+        id: article._id,
+        title: article.title,
+        description: article.description,
+        author: article.author,
+        createdAt: article._creationTime,
+        viewCount: article.viewCount,
+      };
+    });
+  },
+});
+
+// 記事の追加
 export const insert = mutation({
   args: {
     title: v.string(),
