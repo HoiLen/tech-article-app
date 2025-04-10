@@ -28,7 +28,8 @@ declare namespace __react_server_routing__ {
 
   type StaticRoutes = "/" | "/blogs" | "/ConvexClientProvider" | "/editor" | "/popular" | "/user";
   type DynamicRoutes<T0 extends string> =
-    | `/articles/${SafeSlug<T0>}`;
+    | `/articles/${SafeSlug<T0>}`
+    | `/editor/${SafeSlug<T0>}`;
 
   type RouteImpl<T> =
     | StaticRoutes
