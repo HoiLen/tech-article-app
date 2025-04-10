@@ -29,9 +29,11 @@ export default function Header(props: { pageName: ReactNode | null }) {
               Write
             </div>
           </Link>
-          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold hover:bg-gray-300 transition-colors duration-300">
-            U
-          </div>
+          <Link to="/user">
+            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold hover:bg-gray-300 transition-colors duration-300">
+              U
+            </div>
+          </Link>
         </div>
       </div>
     </header>
