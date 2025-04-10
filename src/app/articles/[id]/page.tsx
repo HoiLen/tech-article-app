@@ -67,7 +67,10 @@ const ArticlePage: FC<Props> = ({ id }) => {
       </div>
 
       {/* 記事の内容 */}
-      <div data-color-mode="light" className="prose max-w-none">
+      <div
+        data-color-mode="light"
+        className="prose max-w-none bg-white mx-0 p-4"
+      >
         <MDEditor.Markdown source={article.description} />
       </div>
     </div>
