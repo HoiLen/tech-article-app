@@ -14,17 +14,26 @@ type ArticleJson = {
   viewCount: number;
 };
 
+const getLatestArticles = async () => {
+  const response = await fetch(
+    "http://localhost:3000/api/articles/latest?limit=8"
+  );
+
+  const data = await response.json();
+  return data;
+};
+
 const getArticles = async () => {
   const response = await fetch(
     "http://localhost:3000/api/articles/popular?limit=4"
   );
 
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
 export default async function Home() {
+  const latestArticles = (await getLatestArticles()) as ArticleJson[];
   const articles = (await getArticles()) as ArticleJson[];
 
   return (
@@ -54,16 +63,16 @@ export default async function Home() {
       {/* Article List */}
       {/* - Latest Articles */}
       <div className="mb-12">
-        <div className="flex items-center mb-8 sticky top-[72px] bg-[rgb(242,248,237)] border-b-4 border-amber-500">
+        <div className="flex items-center mb-8 sticky top-[72px] bg-[rgb(242,237,248)] border-b-4 border-amber-500">
           <Clock size={24} className="text-gray-600 mr-2" />
           <h2 className="text-2xl font-bold text-gray-900">Latest Articles</h2>
         </div>
-        <LatestArticleList />
+        <LatestArticleList articles={latestArticles} />
       </div>
 
       {/* - Popular Articles */}
       <div className="mb-12">
-        <div className="flex items-center justify-between mb-8 sticky top-[72px] bg-[rgb(242,248,237)] border-b-4 border-amber-500">
+        <div className="flex items-center justify-between mb-8 sticky top-[72px] bg-[rgb(242,237,248)] border-b-4 border-amber-500">
           <div className="flex items-center">
             <Flame size={24} className="text-gray-600 mr-2" />
             <h2 className="text-2xl font-bold text-gray-900">

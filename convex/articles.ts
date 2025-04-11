@@ -27,6 +27,36 @@ export const get = query({
   },
 });
 
+// 記事の更新順で記事を取得(取得制限あり)
+export const getLatest = query({
+  // 引数
+  args: {
+    // convex の型指定 (JSのnumber型と互換性のある convex の型を v から持ってきている)
+    limit: v.optional(v.number()),
+  },
+
+  // 実際の処理の部分
+  handler: async (ctx, args) => {
+    const { limit } = args;
+    const articles = await ctx.db.query("articles").collect();
+
+    const sortedArticles = articles
+      .sort((a, b) => b._creationTime - a._creationTime) // 降順ソート
+      .slice(0, limit ?? 10); // 取得した記事の個数の上限を決める。デフォルトでは 10
+
+    return sortedArticles.map((article) => {
+      return {
+        id: article._id,
+        title: article.title,
+        description: article.description,
+        author: article.author,
+        createdAt: article._creationTime,
+        viewCount: article.viewCount,
+      };
+    });
+  },
+});
+
 // 記事のビュー数の多い順で記事を取得
 export const getPopular = query({
   // 引数
