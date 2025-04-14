@@ -9,6 +9,13 @@ type Props = {
   article: Article;
 };
 
+const deleteArticle = (article: Article): void => {
+  const result = window.confirm(article.title + "\nを本当に削除しますか？");
+  if (result) {
+    console.log(article.title, "を削除しました");
+  }
+};
+
 const UserArticleCard: FC<Props> = ({ article }) => {
   return (
     <div className="flex flex-col">
@@ -47,18 +54,25 @@ const UserArticleCard: FC<Props> = ({ article }) => {
         </div>
       </Link>
       <div className="flex justify-end">
-        <Link to={`/editor/${article.id}`} className="pl-6">
-          <div className="border border-amber-500 bg-amber-500 text-white px-4 py-2 rounded-md flex items-center hover:border-amber-950 hover:bg-amber-950 hover:text-amber-300 transition duration-300 ease-in-out">
+        <div>
+          <Link
+            to={`/editor/${article.id}`}
+            className="border border-amber-500 bg-amber-500 text-white px-4 py-2 rounded-md flex items-center hover:border-amber-950 hover:bg-amber-950 hover:text-amber-300 transition duration-300 ease-in-out"
+          >
             <PenTool size={20} className="mr-2" />
             Edit Article
-          </div>
-        </Link>
-        <Link to="/editor" className="pl-6">
-          <div className="border border-red-500 text-red-500 px-4 py-2 rounded-md flex items-center hover:bg-red-500 hover:text-white transition duration-300 ease-in-out">
+          </Link>
+        </div>
+
+        <div className="pl-6">
+          <button
+            className="border border-red-500 text-red-500 px-4 py-2 rounded-md flex items-center hover:bg-red-500 hover:text-white transition duration-300 ease-in-out"
+            onClick={() => deleteArticle(article)}
+          >
             <Trash2 size={20} className="mr-2" />
             Delete
-          </div>
-        </Link>
+          </button>
+        </div>
       </div>
     </div>
   );
