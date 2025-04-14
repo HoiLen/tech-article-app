@@ -4,7 +4,7 @@ import TypingAnimation from "./TypingAnimation";
 
 const ClientWrapperTypingAnimation = () => {
   return (
-    <TypingAnimation fullText="Discover and share valuable insights in technology." />
+    <TypingAnimation fullText="Let's share technology and evolve together." />
   );
 };
 
