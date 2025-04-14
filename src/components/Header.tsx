@@ -20,9 +20,9 @@ export default function Header(props: { pageName: ReactNode | null }) {
         </div>
 
         <div className="flex items-center space-x-6">
-          <Link to="/blogs">
+          {/* <Link to="/blogs">
             <div className="text-lg font-medium">Blogs</div>
-          </Link>
+          </Link> */}
           <Link to="/editor">
             <div className="bg-amber-500 text-white px-4 py-2 rounded-md flex items-center hover:bg-amber-950 hover:text-amber-300 transition duration-300 ease-in-out">
               <PenTool size={20} className="mr-2" />
