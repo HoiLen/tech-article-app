@@ -40,8 +40,8 @@ export default async function Home() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       {/* Welcome Message */}
-      <div className="text-start mb-16 flex justify-between items-center">
-        <div>
+      <div className="text-start mb-4 flex justify-between items-center h-60">
+        <div className="flex flex-col items-start">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Welcome to{" "}
             <span className="text-amber-700">
