@@ -4,6 +4,7 @@ import LatestArticleList from "../components/LatestArticleList";
 import { PopularArticleList } from "../components/PopularArticleList";
 import { Link } from "@lazarv/react-server/navigation";
 import { ArrowRight, Clock, Flame } from "lucide-react";
+import ClientWrapperTypingAnimation from "../components/ClientWrapperTypingAnimation";
 
 type ArticleJson = {
   id: string;
@@ -50,7 +51,7 @@ export default async function Home() {
           </span>
         </h1>
         <p className="text-xl text-gray-600 mb-8">
-          Discover and share valuable insights in technology.
+          <ClientWrapperTypingAnimation />
         </p>
         <Link
           to="/editor"
