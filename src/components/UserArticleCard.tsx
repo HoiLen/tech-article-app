@@ -4,19 +4,28 @@ import { FC } from "react";
 import { Article } from "../domain/Article";
 import { Link } from "@lazarv/react-server/navigation";
 import { Eye, PenTool, Trash2 } from "lucide-react";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Id } from "../../convex/_generated/dataModel";
+import { useClient } from "@lazarv/react-server/client";
 
 type Props = {
   article: Article;
 };
 
-const deleteArticle = (article: Article): void => {
-  const result = window.confirm(article.title + "\nを本当に削除しますか？");
-  if (result) {
-    console.log(article.title, "を削除しました");
-  }
-};
-
 const UserArticleCard: FC<Props> = ({ article }) => {
+  const deleteArticle = useMutation(api.articles.deleteArticle);
+  const { navigate } = useClient();
+
+  const deleteArticleHandler = async (article: Article) => {
+    const result = window.confirm(article.title + "\nを本当に削除しますか？");
+    if (result) {
+      await deleteArticle({ id: article.id as Id<"articles"> });
+      alert(article.title + "\nを削除しました");
+      navigate("/user");
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <Link to={`/articles/${article.id}`}>
@@ -67,7 +76,7 @@ const UserArticleCard: FC<Props> = ({ article }) => {
         <div className="pl-6">
           <button
             className="border border-red-500 text-red-500 px-4 py-2 rounded-md flex items-center hover:bg-red-500 hover:text-white transition duration-300 ease-in-out"
-            onClick={() => deleteArticle(article)}
+            onClick={() => deleteArticleHandler(article)}
           >
             <Trash2 size={20} className="mr-2" />
             Delete

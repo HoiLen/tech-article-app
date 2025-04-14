@@ -161,7 +161,7 @@ export const incrementViewCount = mutation({
   handler: async (ctx, { id }) => {
     const article = await ctx.db.get(id);
     if (!article) {
-      throw new Error("Article not fount");
+      throw new Error("Article not found");
     }
 
     // _id で変更するレコードを指定し、{} でカラムに変更をかける
@@ -181,7 +181,7 @@ export const mutateArticle = mutation({
   handler: async (ctx, { id, title, description }) => {
     const article = await ctx.db.get(id);
     if (!article) {
-      throw new Error("Article not fount");
+      throw new Error("Article not found");
     }
 
     // _id で変更するレコードを指定し、{} でカラムに変更をかける
@@ -189,5 +189,21 @@ export const mutateArticle = mutation({
       title: title,
       description: description,
     });
+  },
+});
+
+// 記事を削除する関数
+export const deleteArticle = mutation({
+  args: {
+    id: v.id("articles"),
+  },
+  handler: async (ctx, { id }) => {
+    const article = await ctx.db.get(id);
+    if (!article) {
+      throw new Error("Article not found");
+    }
+
+    // _id で指定した記事を削除
+    await ctx.db.delete(article._id);
   },
 });
