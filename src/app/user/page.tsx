@@ -1,4 +1,4 @@
-import { UserArticleList } from "../../components/UserArticleList";
+import ClientUserArticleList from "../../components/ClientUserArticleList";
 
 type ArticleJson = {
   id: string;
@@ -25,7 +25,7 @@ const UserPage = async () => {
     <div className="max-w-5xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold">Your tech blog list</h1>
       <div className="mt-12">
-        <UserArticleList articles={articles} />
+        <ClientUserArticleList articles={articles} />
       </div>
     </div>
   );

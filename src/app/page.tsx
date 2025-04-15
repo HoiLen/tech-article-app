@@ -1,10 +1,10 @@
 import "./global.css";
 import { Suspense } from "react";
-import LatestArticleList from "../components/LatestArticleList";
-import { PopularArticleList } from "../components/PopularArticleList";
 import { Link } from "@lazarv/react-server/navigation";
 import { ArrowRight, Clock, Flame } from "lucide-react";
 import ClientWrapperTypingAnimation from "../components/ClientWrapperTypingAnimation";
+import ClientLatestArticleList from "../components/ClientLatestArticleList";
+import ClientPopularArticleList from "../components/ClientPopularArticleList";
 
 type ArticleJson = {
   id: string;
@@ -70,7 +70,7 @@ export default async function Home() {
           <Clock size={24} className="text-gray-600 mr-2" />
           <h2 className="text-2xl font-bold text-gray-900">Latest Articles</h2>
         </div>
-        <LatestArticleList articles={latestArticles} />
+        <ClientLatestArticleList articles={latestArticles} />
       </div>
 
       {/* - Popular Articles */}
@@ -91,7 +91,7 @@ export default async function Home() {
           </Link>
         </div>
         <Suspense fallback={<div>Loading...</div>}>
-          <PopularArticleList articles={articles} />
+          <ClientPopularArticleList articles={articles} />
         </Suspense>
       </div>
     </div>
