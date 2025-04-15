@@ -68,7 +68,7 @@ export default async function Home() {
       <div className="mb-12">
         <div className="flex items-center mb-8 sticky top-[72px] bg-[rgb(242,237,248)] border-b-4 border-amber-500">
           <Clock size={24} className="text-gray-600 mr-2" />
-          <h2 className="text-2xl font-bold text-gray-900">Latest Articles</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Latest</h2>
         </div>
         <ClientLatestArticleList articles={latestArticles} />
       </div>
@@ -78,9 +78,7 @@ export default async function Home() {
         <div className="flex items-center justify-between mb-8 sticky top-[72px] bg-[rgb(242,237,248)] border-b-4 border-amber-500">
           <div className="flex items-center">
             <Flame size={24} className="text-gray-600 mr-2" />
-            <h2 className="text-2xl font-bold text-gray-900">
-              Popular Articles
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900">Trend</h2>
           </div>
           <Link
             to="/popular"
