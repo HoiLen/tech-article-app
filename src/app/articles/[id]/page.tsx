@@ -22,13 +22,13 @@ const ArticlePage: FC<Props> = ({ id }) => {
       setMDEditor(mod.default);
     });
 
-    // StrictMode によるビューの２重カウントを防ぐ(本番環境では外す)
+    // そのユーザーが一度閲覧したかどうかを Session で管理する
+    // StrictMode によるビューの２重カウントと、同一ユーザーによるビューの連続カウントを防ぐ
     const viewed = sessionStorage.getItem(`viewed-${id}`);
     if (!viewed) {
       incrementViewCount({ id: id as Id<"articles"> });
       sessionStorage.setItem(`viewed-${id}`, "true");
     }
-    // incrementViewCount({ id: id as Id<"articles"> });
   }, [id]);
 
   if (!article || !MDEditor) {
